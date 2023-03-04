@@ -1,6 +1,6 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import { color, device, shadow } from "./utils.styled";
+import { color, device } from "./utils.styled";
 
 export const Container = styled.div`
   width: 100%;
