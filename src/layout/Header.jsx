@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import styled from "styled-components";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import {} from "react-icons";
 
 import { Divider } from "../styles/element.styled";
 import { ProductContext } from "../context/ProductContext";
@@ -65,14 +66,14 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link to="/add-product">Add</Link>
+              <Link to="/add-product">ADD</Link>
               <button
                 className=".delete-checkbox"
                 type="button"
                 onClick={handleDeleteProducts}
                 style={{ color: "red" }}
               >
-                Mass Delete
+                MASS DELETE
               </button>
             </>
           )}
