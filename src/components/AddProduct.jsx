@@ -6,7 +6,7 @@ const AddProduct = () => {
   const { productInput, setProductInput, errors, handleBlur, optionValue } =
     useContext(ProductContext);
 
-  const options = ["Dvd", "Book", "Furniture"];
+  const options = ["DVD", "Book", "Furniture"];
 
   const handleOnChange = (e) => {
     const { id, value } = e.target;
@@ -26,6 +26,8 @@ const AddProduct = () => {
       setProductInput((prev) => ({ ...prev, [id]: value }));
     }
   };
+
+  console.log(optionValue);
 
   const optionChangeHandler = (e) => {
     const { id, value } = e.target;
@@ -91,7 +93,7 @@ const AddProduct = () => {
             <select id="productType" onChange={optionChangeHandler}>
               <option>Type Switcher</option>
               {options?.map((option, index) => (
-                <option key={index}>{option.toUpperCase()}</option>
+                <option key={index}>{option}</option>
               ))}
             </select>
           </Select>
