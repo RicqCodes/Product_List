@@ -28,7 +28,6 @@ const useFormValidation = (data, validation) => {
     });
 
     // Sets the form data
-
     if (
       key === "weight" ||
       key === "size" ||
