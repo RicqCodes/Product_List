@@ -20,7 +20,7 @@ const ProductProvider = ({ children }) => {
     checkIsValid,
     validateOnSubmit,
   } = useFormValidation(productInput, validation);
-  console.log(productInput);
+
   return (
     <ProductContext.Provider
       value={{

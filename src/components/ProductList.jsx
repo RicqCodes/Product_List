@@ -19,7 +19,7 @@ const ProductList = () => {
   return (
     <ProductListContainer>
       <ProductContainer>
-        {products.length > 0 ? (
+        {products?.length > 0 ? (
           products?.map((product, index) => (
             <Card
               key={index}

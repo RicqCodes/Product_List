@@ -6,7 +6,6 @@ const Card = ({ data, selectedProduct, setSelectedProduct }) => {
 
   const handleChange = (e) => {
     const { checked, value } = e.target;
-    // const { product } = selectedProduct;
 
     if (checked) {
       setSelectedProduct((prev) => {
@@ -27,6 +26,7 @@ const Card = ({ data, selectedProduct, setSelectedProduct }) => {
             className="delete-checkbox"
             value={data.sku}
             onChange={handleChange}
+            checked={selectedProduct?.includes(data.sku) ? true : false}
           />
         </InputContainer>
         <TextContent>
@@ -56,6 +56,7 @@ const CardContainer = styled.div`
   width: 100%;
   height: 180px;
   border: 1px solid #000;
+  border-radius: 5px;
   position: relative;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
@@ -89,4 +90,7 @@ const InputContainer = styled.div`
 const TextContent = styled.div`
   text-align: center;
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 `;

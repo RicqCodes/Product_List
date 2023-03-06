@@ -26,7 +26,6 @@ const Header = () => {
 
       if (response.status === 1) {
         setProductInput(null);
-        // toast.success(response?.message);
         setTimeout(() => {
           navigate("/");
         }, 3000);
@@ -36,15 +35,12 @@ const Header = () => {
     }
   };
 
-  console.log(selectedProduct);
   const handleDeleteProducts = async () => {
     const response = await deleteProducts(selectedProduct);
-    console.log(response);
 
     if (response.status === 1) {
       setSelectedProduct([]);
       setReload(!reload);
-      // toast.success(response?.message);
     } else {
       toast.error(response?.message);
     }

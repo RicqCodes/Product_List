@@ -1,23 +1,31 @@
-import axios from "axios";
+const url = "https://juniortest-prince-nwakanma.000webhostapp.com/api/";
 
 export const addProduct = async (productInput) => {
-  const response = await axios.post(
-    "http://localhost:80/product/api/save",
-    productInput
-  );
-  return response.data;
+  const res = await fetch(`${url}save/`, {
+    method: "POST",
+    body: JSON.stringify(productInput),
+  });
+
+  const data = res.json();
+
+  return data;
 };
 
 export const getProducts = async () => {
-  const response = await axios.get("http://localhost:80/product/api/products/");
+  const res = await fetch(url);
 
-  return response.data;
+  const data = res.json();
+
+  return data;
 };
 
 export const deleteProducts = async (deleteProducts) => {
-  const response = await axios.patch(
-    "http://localhost:80/product/api/mass-delete",
-    deleteProducts
-  );
-  return response.data;
+  const res = await fetch(`${url}mass-delete/`, {
+    method: "POST",
+    body: JSON.stringify(deleteProducts),
+  });
+
+  const data = res.json();
+
+  return data;
 };
