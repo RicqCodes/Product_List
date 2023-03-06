@@ -71,6 +71,14 @@ export const GlobalStyles = createGlobalStyle`
         }
     }
 
+    button,a {
+        font-size: 14px;
+
+        ${() => device.down("sm")} {
+            font-size: 12px;
+        }
+    }
+
     span {
         font-size: 14px;
 

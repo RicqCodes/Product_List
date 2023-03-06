@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { Divider } from "../styles/element.styled";
 import { ProductContext } from "../context/ProductContext";
 import { addProduct, deleteProducts } from "../handlers/handlers";
+import { device } from "../styles/utils.styled";
 
 const Header = () => {
   const {
@@ -101,12 +102,16 @@ const NavButtonContainer = styled.div`
   display: flex;
   gap: 24px;
 
+  ${() => device.down("sm")} {
+    gap: 16px;
+  }
+
   a,
   button {
     background-color: transparent;
     border: none;
     padding: 8px 18px;
-    font-size: 14px;
+    /* font-size: 14px; */
     font-weight: 500;
     cursor: pointer;
     text-transform: uppercase;
@@ -117,6 +122,10 @@ const NavButtonContainer = styled.div`
       &:hover {
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.08);
       }
+    }
+
+    ${() => device.down("sm")} {
+      padding: 8px 16px;
     }
   }
 `;
