@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 const Card = ({ data, selectedProduct, setSelectedProduct }) => {
   const parseData = JSON.parse(data.properties);
+  const inputRef = useRef();
 
   const handleChange = (e) => {
     const { checked, value } = e.target;
-
     if (checked) {
       setSelectedProduct((prev) => {
         return [...prev, value];
@@ -16,11 +16,28 @@ const Card = ({ data, selectedProduct, setSelectedProduct }) => {
     }
   };
 
+  const handleClick = (e) => {
+    if (e.target !== inputRef.current) {
+      inputRef.current.checked = !inputRef.current.checked;
+
+      const { checked, value } = inputRef.current;
+
+      if (checked) {
+        setSelectedProduct((prev) => {
+          return [...prev, value];
+        });
+      } else {
+        setSelectedProduct(selectedProduct.filter((e) => e !== value));
+      }
+    }
+  };
+
   return (
-    <CardContainer>
+    <CardContainer onClick={handleClick}>
       <CardContent>
         <InputContainer>
           <input
+            ref={inputRef}
             type="checkbox"
             name="product"
             className="delete-checkbox"

@@ -18,28 +18,38 @@ const Header = () => {
     setReload,
     reload,
     validateOnSubmit,
+    setIsLoading,
   } = useContext(ProductContext);
   const location = useLocation();
   const navigate = useNavigate();
 
   const handleSaveProduct = async () => {
-    if (validateOnSubmit()) {
-      const response = await addProduct(productInput);
+    try {
+      if (validateOnSubmit()) {
+        setIsLoading(true);
+        const response = await addProduct(productInput);
 
-      if (response.status === 1) {
-        setProductInput(null);
-        setTimeout(() => {
-          navigate("/");
-        }, 3000);
-      } else {
-        toast.error(response?.message);
+        if (response.status === 1) {
+          setProductInput(null);
+          setTimeout(() => {
+            setIsLoading(false);
+            navigate("/");
+          }, 3000);
+        } else {
+          console.log(response);
+          throw new Error(response?.message);
+        }
       }
+    } catch (err) {
+      setIsLoading(false);
+      toast.error(err.message);
+      console.log(err.message);
     }
   };
 
   const handleDeleteProducts = async () => {
     const response = await deleteProducts(selectedProduct);
-
+    console.log(response);
     if (response.status === 1) {
       setSelectedProduct([]);
       setReload(!reload);

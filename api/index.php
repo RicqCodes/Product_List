@@ -3,12 +3,9 @@
 error_reporting(E_ALL);
 ini_set("display_errors", "On");
 
-require 'src/product/ProductFactory.php';
-require 'src/product/Product.php';
-require 'src/database/Database.php';
-
 use api\product\ProductFactory;
 use api\product\Product;
+use api\model\ValidateInput;
 
 // required headers
 header('Access-Control-Allow-Origin: *');
@@ -28,7 +25,8 @@ switch($method) {
             }
             $type = ucfirst(strtolower($productObj->type));
             $productData = Validate($type, $productObj);
-            $createdProduct =  ProductFactory::createProduct($productData);
+             $isValid = ValidateInput::validate($productData);
+            $createdProduct = $isValid ? ProductFactory::createProduct($productData) : '';
             $data = $createdProduct ? $createdProduct->getProduct() : '';
             $createdProduct && $createdProduct->save($data);
         } else if(isset($path[4]) && is_string($path[4]) && $path[4] === 'mass-delete') {

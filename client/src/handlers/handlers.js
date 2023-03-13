@@ -13,18 +13,19 @@ export const addProduct = async (productInput) => {
 
 export const getProducts = async () => {
   const res = await fetch(url);
-
   const data = res.json();
 
   return data;
 };
 
 export const deleteProducts = async (deleteProducts) => {
+  console.log(deleteProducts);
   const res = await fetch(`${url}mass-delete/`, {
     method: "POST",
     body: JSON.stringify(deleteProducts),
   });
 
+  console.log(res);
   const data = res.json();
 
   return data;

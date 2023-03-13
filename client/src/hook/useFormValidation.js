@@ -77,24 +77,32 @@ const useFormValidation = (data, validation) => {
    */
 
   const validateOnSubmit = () => {
-    let submitErrors;
-    // Loops through the formData and calls the validate function on each iteration
-    for (const [key, value] of Object.entries(formData)) {
-      //  Stores the error returned from the callback function after comparing the values with the rules
-      const error = validation(formData, key, value);
+    try {
+      let submitErrors;
+      // Loops through the formData and calls the validate function on each iteration
+      for (const [key, value] of Object.entries(formData)) {
+        //  Stores the error returned from the callback function after comparing the values with the rules
+        const error = validation(formData, key, value);
 
-      submitErrors = {
-        ...submitErrors,
-        [key]: error,
-      };
+        submitErrors = {
+          ...submitErrors,
+          [key]: error,
+        };
 
-      // Sets the state error
-      setErrors(submitErrors);
-    }
-    if (Object.values(submitErrors).every((value) => value === undefined)) {
-      return true;
-    } else {
-      return false;
+        // Sets the state error
+        setErrors(submitErrors);
+      }
+      if (submitErrors !== undefined) {
+        if (Object.values(submitErrors).every((value) => value === undefined)) {
+          return true;
+        } else {
+          return false;
+        }
+      } else {
+        throw new Error("Input fields cannot be empty");
+      }
+    } catch (err) {
+      throw new Error(err);
     }
   };
 

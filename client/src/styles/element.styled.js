@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 import { color, device } from "./utils.styled";
+import { spin } from "./animation.styled";
 
 export const Container = styled.div`
   width: 100%;
@@ -20,7 +21,6 @@ export const Divider = styled.span`
 `;
 
 // Resizes based on device scrren size, very fluid
-
 export const FluidTitle = styled.h1`
   color: ${() => (color ? color : color())};
   font-size: 4.8vw;
@@ -36,4 +36,13 @@ export const FluidTitle = styled.h1`
         ? "20px"
         : "32px"};
   }
+`;
+
+export const Loader = styled.div`
+  width: 64px;
+  height: 64px;
+  border: 5px solid #000;
+  border-radius: 50%;
+  border-top: 5px solid #fff;
+  animation: ${spin} 1s linear infinite;
 `;

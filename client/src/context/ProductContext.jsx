@@ -8,7 +8,7 @@ const ProductProvider = ({ children }) => {
   const [selectedProduct, setSelectedProduct] = useState([]);
   const [products, setProducts] = useState([]);
   const [reload, setReload] = useState(false);
-  // const [optionValue, setOptionValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const optionValue = useRef();
   const [productInput, setProductInput] = useState({});
 
@@ -38,8 +38,8 @@ const ProductProvider = ({ children }) => {
         handleChange,
         checkIsValid,
         validateOnSubmit,
-        // optionValue,
-        // setOptionValue,
+        isLoading,
+        setIsLoading,
         optionValue,
       }}
     >

@@ -1,10 +1,17 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { ProductContext } from "../context/ProductContext";
+import OverlayLoader from "./molecules/OverlayLoader";
 
 const AddProduct = () => {
-  const { productInput, setProductInput, errors, handleBlur, optionValue } =
-    useContext(ProductContext);
+  const {
+    productInput,
+    setProductInput,
+    errors,
+    handleBlur,
+    optionValue,
+    isLoading,
+  } = useContext(ProductContext);
 
   const options = ["DVD", "Book", "Furniture"];
 
@@ -26,8 +33,6 @@ const AddProduct = () => {
       setProductInput((prev) => ({ ...prev, [id]: value }));
     }
   };
-
-  console.log(optionValue);
 
   const optionChangeHandler = (e) => {
     const { id, value } = e.target;
@@ -186,6 +191,7 @@ const AddProduct = () => {
           )}
         </AttributeBox>
       </Form>
+      {isLoading && <OverlayLoader />}
     </AddProductContainer>
     // </Container>
   );
