@@ -1,4 +1,5 @@
-const url = "https://juniortest-prince-nwakanma.000webhostapp.com/api/";
+// const url = "https://juniortest-prince-nwakanma.000webhostapp.com/api/";
+const url = "http://localhost/api/";
 
 export const addProduct = async (productInput) => {
   const res = await fetch(`${url}save/`, {

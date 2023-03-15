@@ -77,12 +77,6 @@ const CardContainer = styled.div`
   position: relative;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      scale: 1.05;
-    }
-  }
 `;
 
 const CardContent = styled.div`

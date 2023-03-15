@@ -24,10 +24,17 @@ switch($method) {
                 throw new Exception('Please Select a product type');
             }
             $type = ucfirst(strtolower($productObj->type));
-            $productData = Validate($type, $productObj);
-             $isValid = ValidateInput::validate($productData);
+
+            // First get a new instance of the Validation class
+            $Validation = new Validation($type, $productObj);
+            // Call the validate method to validate and sanitize products
+            $productData = $Validation->validate();
+            //  Validate inputs after sanitizing products
+            $isValid = ValidateInput::validate($productData);
+            // Create products based on the type
             $createdProduct = $isValid ? ProductFactory::createProduct($productData) : '';
             $data = $createdProduct ? $createdProduct->getProduct() : '';
+            // Save created product to the database
             $createdProduct && $createdProduct->save($data);
         } else if(isset($path[4]) && is_string($path[4]) && $path[4] === 'mass-delete') {
             $productInfo = file_get_contents('php://input');
